@@ -22,23 +22,24 @@ public class UserRepositoryTest {
 
     @Test
     public void 유저저장_불러오기() {
-        User user = User.builder().
-                user_id("abc123")
-                .user_name("홍길동")
-                .user_password("12345678")
-                .user_role("인플루언서")
-                .user_location("서울특별시")
-                .user_birthday(Date.valueOf(LocalDate.of(1998, 12, 29)))
-                .user_level(5)
+        final User user = User.builder()
+                .email("test@test.com")
+                .name("테스트")
+                .password("12345678")
+                .nickname("테스트닉네임")
+                .location("서울")
+                .birthday(Date.valueOf("1998-12-29"))
                 .build();
         userRepository.save(user);
 
         List<User> userList = userRepository.findAll();
 
         User testUser = userList.get(0);
-        assertEquals(testUser.getUser_id(), "abc123");
-        assertEquals(testUser.getUser_password(), "12345678");
-        assertEquals(testUser.getUser_name(), "홍길동");
+        assertEquals(testUser.getEmail(), "test@test.com");
+        assertEquals(testUser.getPassword(), "12345678");
+        assertEquals(testUser.getName(), "테스트");
+        assertEquals(testUser.getNickname(), "테스트닉네임");
+//        assertEquals(testUser.getRole(), "일반 사용자");
     }
 
     @After

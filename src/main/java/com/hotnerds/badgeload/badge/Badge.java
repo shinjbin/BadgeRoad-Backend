@@ -7,22 +7,22 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
-@Entity
+@Entity(name = "badges")
 public class Badge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     String title;
 
-    @Column(length = 20)
-    String category;
+    @Column(nullable = false)
+    int category_id;
 
     @Builder
-    public Badge(String title, String category) {
+    public Badge(String title, int category_id) {
         this.title = title;
-        this.category = category;
+        this.category_id = category_id;
     }
 }

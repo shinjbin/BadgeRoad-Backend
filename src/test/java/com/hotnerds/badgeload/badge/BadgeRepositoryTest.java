@@ -1,7 +1,5 @@
-package com.hotnerds.badgeload.model;
+package com.hotnerds.badgeload.badge;
 
-import com.hotnerds.badgeload.badge.Badge;
-import com.hotnerds.badgeload.badge.BadgeRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +22,7 @@ public class BadgeRepositoryTest {
     public void 뱃지저장_불러오기() {
         Badge badge = Badge.builder()
                 .title("테스트 뱃지")
-                .category("테스트 카테고리")
+                .category_id(123)
                 .build();
         badgeRepository.save(badge);
 
@@ -32,7 +30,7 @@ public class BadgeRepositoryTest {
 
         Badge testBadge = badgeList.get(0);
         assertEquals(testBadge.getTitle(), "테스트 뱃지");
-        assertEquals(testBadge.getCategory(), "테스트 카테고리");
+        assertEquals(testBadge.getCategory_id(), 123);
     }
 
     @After
