@@ -3,10 +3,7 @@ package com.hotnerds.badgeload.user;
 import com.hotnerds.badgeload.badge.Badge;
 import com.hotnerds.badgeload.badge.BadgeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -17,9 +14,19 @@ import java.util.List;
 public class UserController {
     private final UserRepository userRepository;
 
-    @GetMapping("user")
+    @GetMapping("/user")
     public List<User> findAllBadges() {
         return userRepository.findAll();
+    }
+
+    @PostMapping("/user")
+    public User newUser(@RequestBody User newUser) {
+        return userRepository.save(newUser);
+    }
+
+    @GetMapping("/user/login")
+    public String login() {
+        return "login";
     }
 
     @PostMapping("user/signup")

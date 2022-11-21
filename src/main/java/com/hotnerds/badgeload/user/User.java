@@ -4,12 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
 @Entity
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

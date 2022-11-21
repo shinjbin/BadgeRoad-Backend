@@ -13,6 +13,10 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    public User getSelectOne(User user) throws Exception{
+        return userRepository.getSelectOne(user);
+    }
+
     public List<User> findAll() {
         return userRepository.findAll();
     }
