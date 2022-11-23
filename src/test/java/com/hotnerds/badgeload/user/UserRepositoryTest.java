@@ -26,7 +26,6 @@ public class UserRepositoryTest {
                 .email("test@test.com")
                 .name("테스트")
                 .password("12345678")
-                .nickname("테스트닉네임")
                 .location("서울")
                 .birthday(Date.valueOf("1998-12-29"))
                 .build();
@@ -38,7 +37,6 @@ public class UserRepositoryTest {
         assertEquals(testUser.getEmail(), "test@test.com");
         assertEquals(testUser.getPassword(), "12345678");
         assertEquals(testUser.getName(), "테스트");
-        assertEquals(testUser.getNickname(), "테스트닉네임");
 //        assertEquals(testUser.getRole(), "일반 사용자");
     }
 

@@ -1,6 +1,6 @@
 package com.hotnerds.badgeload;
 
-import com.hotnerds.badgeload.user.UserSecurityService;
+//import com.hotnerds.badgeload.user.UserSecurityService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,13 +16,12 @@ import org.springframework.security.web.header.writers.frameoptions.XFrameOption
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final UserSecurityService userSecurityService;
+//    private final UserSecurityService userSecurityService;
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/**").permitAll()
-                .and()
-                .csrf().ignoringAntMatchers("/h2-console/**")
+        http.authorizeRequests().mvcMatchers("/", "/open/naver/**").permitAll()
                 .and()
                 .headers()
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(

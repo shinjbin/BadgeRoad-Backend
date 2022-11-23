@@ -8,6 +8,7 @@ import java.util.Collection;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 @ToString
 @Entity
 public class User{
@@ -25,8 +26,8 @@ public class User{
     @Column(length = 10, nullable = false)
     private String name;
 
-    @Column(length = 10, nullable = false)
-    private String nickname;
+//    @Column(length = 10, nullable = false, unique = true)
+//    private String nickname;
 
     @Column(columnDefinition = "VARCHAR(20) default '일반 사용자'") // TODO: ENUM?
     private String role;
@@ -44,7 +45,6 @@ public class User{
     public User(String email,
                 String name,
                 String password,
-                String nickname,
                 String role,
                 String location,
                 Date birthday,
@@ -52,7 +52,6 @@ public class User{
         this.email = email;
         this.name = name;
         this.password = password;
-        this.nickname = nickname;
         this.role = role;
         this.location = location;
         this.birthday = birthday;

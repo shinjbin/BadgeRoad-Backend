@@ -3,8 +3,10 @@ package com.hotnerds.badgeload.user;
 import com.hotnerds.badgeload.badge.Badge;
 import com.hotnerds.badgeload.badge.BadgeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @RequestMapping
 public class UserController {
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @GetMapping("/user")
     public List<User> findAllBadges() {
@@ -30,17 +33,20 @@ public class UserController {
     }
 
     @PostMapping("user/signup")
-    public User signUp() {
-        final User user = User.builder()
-                .email("test@test.com")
-                .name("shin")
-                .password("1234")
-                .role("일반 사용자")
-                .location("서울")
-                .birthday(Date.valueOf("1998-12-29"))
-                .level(1)
-                .build();
-        return userRepository.save(user);
+    public String signUp(@Valid UserCreateForm userCreateForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "signup_form";
+        }
+
+        if (!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
+            bindingResult.rejectValue("password2", "passwordIncorrect",
+                    "2개의 패스워드가 일치하지 않습니다.");
+            return "signup_form";
+        }
+
+        userService.create(userCreateForm.getEmail(), userCreateForm.getPassword1(), userCreateForm.getName());
+
+        return "redirect:/";
     }
 
 }
