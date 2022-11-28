@@ -1,4 +1,4 @@
-package com.hotnerds.badgeload;
+package com.hotnerds.badgeload.config;
 
 //import com.hotnerds.badgeload.user.UserSecurityService;
 import org.springframework.context.annotation.Bean;
